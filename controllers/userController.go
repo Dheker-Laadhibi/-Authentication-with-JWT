@@ -42,7 +42,11 @@ func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		userId := c.Param("user_id")
 		//check if user is the admin or not
-		helper.MatchUserTypeTOUid(c,userId)
+		if err := helper.MatchUserTypeTOUid(c, userId); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error ": err.Error()})
+			return
+		}
+
 	}
 
 }
