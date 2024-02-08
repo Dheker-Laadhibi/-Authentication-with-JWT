@@ -7,6 +7,9 @@ controller "github.com/dhekerlaadhibi/LearnGo/jwt/controllers"
 )
 
 func AuthRouter(incomingRoutes *gin.Engine ) {
-incomingRoutes.POST("users/signup" , controller.signup())
-incomingRoutes.POST("users/login" , controller.login())
+	//here routes signup and sign in dont need protectionn
+incomingRoutes.POST("users/signup" , controller.Signup())
+incomingRoutes.POST("users/login" , controller.Login())
 }
+
+
