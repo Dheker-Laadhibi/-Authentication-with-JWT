@@ -1,26 +1,28 @@
-package helpers
+package helper
 
-import (
+import(
 	"errors"
 	"github.com/gin-gonic/gin"
 )
 
-func CheckUserType(c *gin.Context, role string) (err error) {
 
+func CheckUserType(c *gin.Context, role string) (err error){
 	userType := c.GetString("user_type")
 	err = nil
 	if userType != role {
-		err = errors.New("unauthorized to access this ressource ")
+		err = errors.New("Unauthorized to access this resource")
 		return err
 	}
-return err
+	return err
 }
-func MatchUserTypeTOUid(c *gin.Context, userId string) (err error) {
 
+func MatchUserTypeToUid(c *gin.Context, userId string) (err error){
 	userType := c.GetString("user_type")
 	uid := c.GetString("uid")
+	err= nil
+
 	if userType == "USER" && uid != userId {
-		err = errors.New("unauthorized to access the ressource ")
+		err = errors.New("Unauthorized to access this resource")
 		return err
 	}
 	err = CheckUserType(c, userType)
